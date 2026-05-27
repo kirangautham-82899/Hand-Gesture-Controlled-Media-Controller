@@ -67,24 +67,28 @@ It runs as a desktop controller with a full dashboard and a compact always-on-to
 ## Project Architecture
 
 ```text
-HandGestureMediaController/
-|- .github/workflows/release-installer.yml
-|- installer/HandGestureMediaController.iss
-|- scripts/
-|  |- build_installer.ps1
-|  |- run_camera.py
-|  '- run_gui.py
-|- src/hand_gesture_media_controller/
-|  |- core/
-|  |  |- gesture_utils.py
-|  |  |- hand_detector.py
-|  |  '- volume_controller.py
-|  |- ui/
-|  |  |- app.py
-|  |  '- splash.py
-|  '- camera_controller.py
-|- requirements.txt
-'- README.md
+HandGestureMediaController
+├─ .github
+│  └─ workflows
+│     └─ release-installer.yml       # CI: build + release installer
+├─ installer
+│  └─ HandGestureMediaController.iss # Inno Setup definition
+├─ scripts
+│  ├─ build_installer.ps1            # Local installer build helper
+│  ├─ run_camera.py                  # OpenCV camera-mode launcher
+│  └─ run_gui.py                     # PyQt desktop launcher
+├─ src
+│  └─ hand_gesture_media_controller
+│     ├─ core
+│     │  ├─ gesture_utils.py         # Gesture math and detection rules
+│     │  ├─ hand_detector.py         # MediaPipe hand landmark pipeline
+│     │  └─ volume_controller.py     # System audio endpoint control
+│     ├─ ui
+│     │  ├─ app.py                   # Main dashboard + side panel UI
+│     │  └─ splash.py                # Startup splash screen
+│     └─ camera_controller.py        # Runtime gesture control loop
+├─ requirements.txt                  # Python dependencies
+└─ README.md                         # Project documentation
 ```
 
 ---
