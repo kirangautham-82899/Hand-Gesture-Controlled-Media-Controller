@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0f172a,50:1d4ed8,100:06b6d4&text=Hand%20Gesture%20Media%20Controller&fontColor=ffffff&fontSize=40&fontAlignY=38&desc=Desktop%20Media%20Control%20with%20Real-Time%20AI%20Gestures&descAlignY=58&animation=fadeIn" alt="banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:020617,50:0b1120,100:111827&text=Hand%20Gesture%20Media%20Controller&fontColor=f8fafc&fontSize=40&fontAlignY=38&desc=Desktop%20Media%20Control%20with%20Real-Time%20AI%20Gestures&descAlignY=58&descSize=16&animation=fadeIn" alt="banner" />
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Segoe+UI&weight=700&size=22&duration=2600&pause=800&color=22D3EE&center=true&vCenter=true&width=980&lines=Control+your+media+with+real-time+hand+gestures;Premium+PyQt6+UI+with+Side+Control+Mode;Optimized+for+smooth+tracking+and+low+latency;Installer+and+GitHub+Release+pipeline+included" alt="typing animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=Segoe+UI&weight=700&size=22&duration=2600&pause=800&color=93C5FD&center=true&vCenter=true&width=980&lines=Control+your+media+with+real-time+hand+gestures;Premium+PyQt6+UI+with+Side+Control+Mode;Optimized+for+smooth+tracking+and+low+latency;Installer+and+GitHub+Release+pipeline+included" alt="typing animation" />
 </p>
 
 <p align="center">
