@@ -1,0 +1,39 @@
+﻿# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+.settings/
+
+# Logs and notebooks
+*.log
+.ipynb_checkpoints/
+
+# Build artifacts
+dist/
+build/
+*.spec
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Runtime outputs
+screenshots/*.png
+!screenshots/.gitkeep
+
+# Optional cache folders
+assets/__pycache__/

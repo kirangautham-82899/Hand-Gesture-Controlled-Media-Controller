@@ -1,108 +1,118 @@
-# Hand Gesture Controlled Media Controller
+# Hand Gesture Media Controller
 
-This project presents a **Python-based, real-time media controller** that leverages **hand gestures** for intuitive system-level control. Built using **OpenCV**, **MediaPipe**, and a **PyQt6 graphical user interface (GUI)**, the application enables users to interact with media functions such as volume control, playback toggling, and screenshot capture through simple hand movements.
+Control media playback, volume, and quick actions using real-time hand gestures from your webcam.
 
----
+## Highlights
+- Real-time hand tracking with MediaPipe + OpenCV
+- Premium PyQt6 desktop dashboard UI
+- Side-panel mode for always-on-top media control
+- Gesture-based volume, mute, playback, track skip, fullscreen, and screenshot
+- Optimized loop for smoother FPS and lower latency
+- Windows installer + GitHub Release automation included
 
-## 🔹 Key Features
+## Gesture Map
+- `Pinch` (thumb + index): live volume control
+- `Pinch edge` (enter pinch): mute / unmute toggle
+- `Tight pinch`: screenshot
+- `Open palm`: play / pause
+- `V sign`: next track
+- `Rock sign`: previous track
+- `Fist`: fullscreen toggle
 
-* **Real-time Hand Tracking**
-  Utilizes MediaPipe for accurate and responsive gesture recognition via webcam input.
-
-* **Volume Control**
-  Adjust system volume dynamically by measuring the distance between the thumb and index finger.
-
-* **Mute/Unmute Functionality**
-  Toggle mute status with a soft pinch gesture.
-
-* **Media Playback Control**
-  Use an open palm gesture to simulate media play/pause functionality.
-
-* **Screenshot Capture**
-  Capture and save screenshots with automatic timestamp naming using a tight pinch gesture.
-
-* **Modern PyQt6 GUI**
-
-  * Live embedded webcam feed
-  * Animated splash screen on startup
-  * Real-time gesture and FPS display
-  * Stylish layout with rounded buttons and shadow effects
-
----
-
-## 📁 Project Structure
-
-```
+## Project Structure
+```text
 HandGestureMediaController/
-│
-├── main.py                  # Core backend for gesture processing
-├── hand_detector.py         # MediaPipe-based hand tracking module
-├── volume_controller.py     # System volume control interface
-├── gesture_utils.py         # Gesture interpretation utilities
-├── gui/
-│   ├── app.py               # PyQt6 GUI application with OpenCV feed
-│   ├── splash.py            # Splash screen animation
-│   └── assets/              # (Optional) GUI images/icons
-├── screenshots/             # Auto-saved screenshots from gestures
-├── requirements.txt         # List of required Python dependencies
+|- .github/
+|  '- workflows/
+|     '- release-installer.yml
+|- installer/
+|  '- HandGestureMediaController.iss
+|- scripts/
+|  |- build_installer.ps1
+|  |- run_camera.py
+|  '- run_gui.py
+|- screenshots/
+|  '- .gitkeep
+|- src/
+|  '- hand_gesture_media_controller/
+|     |- core/
+|     |  |- gesture_utils.py
+|     |  |- hand_detector.py
+|     |  '- volume_controller.py
+|     |- ui/
+|     |  |- app.py
+|     |  '- splash.py
+|     |- camera_controller.py
+|     '- __main__.py
+|- main.py
+|- requirements.txt
+'- README.md
 ```
 
----
+## Quick Start
 
-## 🛠️ Setup Instructions
-
-### Prerequisites
-
-* Python 3.8 or higher
-* Webcam-enabled Windows system (volume control requires Windows)
-
-### Installation
-
-1. **Clone or Download the Repository**
-   Ensure all files are present in a single directory on your local machine.
-
-2. **Install Dependencies**
-
-   Using the provided `requirements.txt`:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-   Or install manually:
-
-   ```bash
-   pip install opencv-python mediapipe pycaw pyautogui PyQt6 numpy
-   ```
-
----
-
-## ▶️ Running the Application
-
-In your terminal or command prompt, navigate to the root folder and run:
-
-```bash
-python gui/app.py
+### 1) Create virtual environment
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 ```
 
-This will first launch an animated splash screen, followed by the main GUI application window with live webcam integration.
+### 2) Install dependencies
+```powershell
+pip install -r requirements.txt
+```
 
----
+### 3) Run app
+```powershell
+python scripts\run_gui.py
+```
 
-## ✋ Gesture Reference Guide
+Optional camera-window mode:
+```powershell
+python scripts\run_camera.py
+```
 
-| Gesture                   | Action             |
-| ------------------------- | ------------------ |
-| Thumb–Index Finger Spread | Increase Volume    |
-| Thumb–Index Finger Close  | Mute / Unmute      |
-| Open Palm                 | Play / Pause Media |
-| Tight Pinch               | Capture Screenshot |
+## Side-Panel Workflow (Recommended)
+1. Start the controller in GUI mode.
+2. Click `Enable Side Mode`.
+3. Keep the panel docked right while using YouTube/Spotify/VLC/etc.
+4. Use gestures without leaving your media window.
 
----
+## Performance Notes
+- Hand detection runs on a downscaled frame for speed.
+- Cooldowns prevent accidental repeated triggers.
+- Volume updates are throttled to avoid noisy system calls.
+- Screenshot capture runs in a background thread.
 
-## 📌 Additional Notes
+## Build Windows Installer
 
-* This project was implemented as a learning initiative using concepts and guidance referred from **YouTube tutorials** on hand tracking and OpenCV.
-* Designed for Windows OS with webcam input.
-* Screenshot files are saved inside the `screenshots/` folder with timestamp-based filenames.
+### Local build
+Install Inno Setup 6, then:
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\build_installer.ps1 -Version 1.0.0
+```
+Output:
+```text
+dist_installer/HandGestureMediaController-Setup-1.0.0.exe
+```
 
+### Auto-build on GitHub release tag
+```powershell
+git tag v1.0.0
+git push origin v1.0.0
+```
+The workflow in `.github/workflows/release-installer.yml` builds and uploads the installer artifact to the release.
+
+## Requirements
+- Windows 10/11
+- Python 3.10+ (3.11 recommended)
+- Webcam
+- Audio output device
+
+## Troubleshooting
+- If camera fails: close Zoom/Teams/OBS/browser camera tabs and retry.
+- If media keys do not affect a player: focus the player once, then retry gestures.
+- If FPS is low: reduce camera resolution or close heavy background apps.
+
+## License
+Use this project for personal or educational purposes. Add your preferred open-source license file if you plan to distribute broadly.
